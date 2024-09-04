@@ -1,7 +1,5 @@
-# target
-EXE=collisions
+EXE=window.a
 
-# main target
 all: $(EXE)
 
 #  Msys/MinGW
@@ -23,18 +21,13 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-window/window.a:
-	cd window && $(MAKE)
+window.o: window.cpp window.hpp 
 
-main.o: main.cpp window/window.hpp
+window.a: window.o
+	ar -rcs $@ $^
 
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<
 
-collisions:main.o window/window.a
-	g++ $(CFLG) -o $@ $^ $(LIBS)
-
-# Clean
 clean:
-	cd window && $(CLEAN)
 	$(CLEAN)
