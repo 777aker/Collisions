@@ -1,5 +1,14 @@
 #include "window/window.hpp"
 
+/**
+ * @brief respond to key pressed
+ * 
+ * @param windowobj 
+ * @param key 
+ * @param scancode 
+ * @param action 
+ * @param mods 
+ */
 void key(GLFWwindow *windowobj, int key, int scancode, int action, int mods) {
 	if (action == GLFW_RELEASE)
 		return;
@@ -11,6 +20,11 @@ void key(GLFWwindow *windowobj, int key, int scancode, int action, int mods) {
 	}
 }
 
+/**
+ * @brief main display loop
+ * 
+ * @param windowobj 
+ */
 void display_loop(Window *windowobj) {
 	while (!glfwWindowShouldClose(windowobj->glwindow)) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -34,6 +48,13 @@ void display_loop(Window *windowobj) {
 	}
 }
 
+/**
+ * @brief program entry point
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 int main(int argc, char *argv[]) {
 	Window mainwindow("Collisions", 0, 800, 800, key);
 	glDisable(GL_DEPTH_TEST);
